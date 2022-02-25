@@ -1,8 +1,22 @@
-print("Hii")
+import telebot
+import config
 
-print("Hii all")
-print("Hi from Ufa")
+bot = telebot.TeleBot(config.TOKEN)
 
-print("Hello itcode")
+@bot.message_handler(commands=['start'])
+def welcome(message):
+    welcome_sti = open('Sticker/AnimatedSticker.tgs', 'rb')
+    bot.send_sticker(message.chat.id, welcome_sti)
 
-print("Hi-Fi")
+    bot.send_message(message.chat.id, f"Приветствую тебя ученик Python-а! {format(message.from_user.username, '')}",
+    parse_mode='html')
+
+@bot.message_handler(content_types=['text'])
+
+def get_text_message(message):
+    username = message.from_user.username
+    msg = f"Здравствуй, {username}"
+    bot.send_message(message.from_user.id, msg)
+
+
+bot.polling()
