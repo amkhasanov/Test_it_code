@@ -1,1 +1,0 @@
-TOKEN = '5106734436:AAGyrHqiZj0GKcRGWlXMh_OlvVqerd9vSiE' #token for your telegram bot
